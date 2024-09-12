@@ -1,3 +1,4 @@
+<!--
 ---
 layout: base
 ---
@@ -59,3 +60,64 @@ layout: base
   {%- endif -%}
 
 </div>
+
+-->
+
+---
+layout: base
+---
+
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  <section class="intro">
+    <h2>Welcome to My Cybersecurity Research Portfolio</h2>
+    <p>I am a PhD researcher in Cybersecurity. My work focuses on <strong>threat intelligence, digital forensics, and network security</strong>. Here you can find my research articles, ongoing projects, and professional contributions to the field.</p>
+  </section>
+
+  {{ content }}
+
+  <section class="featured-research">
+    <h2>Featured Research</h2>
+    <ul>
+      <li><a href="/projects/cyber-threat-intelligence">Cyber Threat Intelligence Platform</a></li>
+      <li><a href="/projects/network-security-analysis">Network Security Analysis Tools</a></li>
+      <li><a href="/publications/digital-forensics">Advancements in Digital Forensics</a></li>
+    </ul>
+  </section>
+
+  {%- if posts.size > 0 -%}
+    <h2 class="post-list-heading">Latest Research Articles and Projects</h2>
+    <ul class="post-list">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      {%- for post in posts -%}
+      <li class="post-item">
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  {% if site.paginate %}
+    <div class="pager">
+      <ul class="pagination">
+      {%- if paginator.previous_page %}
+        <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">Previous</a></li>
+      {%- endif %}
+      <li><span class="current-page">Page {{ paginator.page }} of {{ paginator.total_pages }}</span></li>
+      {%- if paginator.next_page %}
+        <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">Next</a></li>
+      {%- endif %}
+      </ul>
+    </div>
+  {%- endif %}
+</div>
+
