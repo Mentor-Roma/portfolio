@@ -1,3 +1,5 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
@@ -16,5 +18,68 @@
     {%- include footer.html -%}
 
   </body>
+
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <meta name="author" content="{{ page.author | default: site.author }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:url" content="{{ page.url | default: site.url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>{{ page.title | default: site.title }}</title>
+  {%- include head.html -%}
+</head>
+
+<body>
+  {%- include header.html -%}
+
+  <main class="page-content" aria-label="Main content">
+    <div class="wrapper" role="main">
+      {{ content }}
+    </div>
+  </main>
+
+  {%- include footer.html -%}
+
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+  <script>
+    window.onscroll = function() {
+      var button = document.getElementById('back-to-top');
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    };
+    document.getElementById('back-to-top').onclick = function() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    };
+  </script>
+
+  <style>
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</body>
 
 </html>
